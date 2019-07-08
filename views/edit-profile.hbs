@@ -1,0 +1,47 @@
+<h1>Edit Profile</h1>
+<form action="/edit-profile/{{user._id}}" method="POST" id="form-container" enctype="multipart/form-data"> 
+
+  <div class="form-row">
+    <div class="col-sm-12">
+      <textarea type="text" id="bio" name="bio" class="form-control" placeholder="Tell us about yourself"></textarea>
+    </div>
+    <div class="col-sm-6">
+      <input type="text" id="location" name="location" class="form-control" placeholder="Change location">
+    </div>
+    <br>
+  <div class="form-group col-sm-12">
+    <label for="picture">Picture</label> <br>
+    <input type="file" name="picture" id="picture" class="form-control">
+  </div>
+  </div>
+
+
+
+  <br> <br>
+  <p>What is your native language(s)?</p>
+  <select class="custom-select" multiple>
+    <option value="english">English</option>
+    <option value="french">French</option>
+    <option value="german">German</option>
+    <option value="spanish">Spanish</option>
+    <option value="italian">Italian</option>
+    <option value="portuguese">Portuguese</option>
+  </select>
+
+  <br> <br>
+  <p>What language(s) are you practising?</p>
+  <select class="custom-select" multiple>
+    <option value="english">English</option>
+    <option value="french">French</option>
+    <option value="german">German</option>
+    <option value="spanish">Spanish</option>
+    <option value="italian">Italian</option>
+    <option value="portuguese">Portuguese</option>
+  </select>
+
+  <br><br>
+
+  <button type="submit" class="btn btn-primary">Update account</button>
+  <br> <br>
+  
+</form>
