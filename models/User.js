@@ -15,26 +15,23 @@ const userSchema = new Schema(
     langsOffered: {
       type: [
         {
-          lang: { type: String },
-          level: {
-            type: String,
-            enum: ["native", "advanced", "intermediate", "beginner"]
-          }
+          lang: { type: String, required: true},
+          
         }
       ],
-      required: true
+      
     },
     langsPractising:  {
       type: [
         {
-          lang: { type: String },
-          level: {
-            type: String,
-            enum: ["native", "advanced", "intermediate", "beginner"]
-          }
+          lang: { type: String, required: true
+ },
+          // level: {
+          //   type: String,
+          //   enum: ["native", "advanced", "intermediate", "beginner"]
+          // }
         }
       ],
-      required: true
     },
     faveConvoTopics: { type: [String], required: true },
     avoidConvoTopics: { type: [String], required: true }

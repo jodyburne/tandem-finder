@@ -24,25 +24,37 @@ router.get("/signup", (req, res, next) => {
 });
 
 router.post("/signup", (req, res, next) => {
-  const username = req.body.username;
+  console.log('passwoooord', req.body)
+  const email = req.body.email
+  const firstName = req.body.firstName
+  const lastName = req.body.lastName;
   const password = req.body.password;
-  if (username === "" || password === "") {
-    res.render("auth/signup", { message: "Indicate username and password" });
+ 
+  if (email === "" || password === "" || firstName === "" || lastName === "" ) {
+    res.render("auth/signup", { message: "Please enter your credentials" });
     return;
   }
 
-  User.findOne({ username }, "username", (err, user) => {
+  User.findOne({ email }, "email", (err, user) => {
     if (user !== null) {
-      res.render("auth/signup", { message: "The username already exists" });
+      res.render("auth/signup", { message: "The email already exists" });
       return;
     }
 
-    const salt = bcrypt.genSaltSync(bcryptSalt);
-    const hashPass = bcrypt.hashSync(password, salt);
+  const salt = bcrypt.genSaltSync(bcryptSalt);
+  const hashPass = bcrypt.hashSync(password, salt);
+  console.log("hashPass",hashPass)
 
     const newUser = new User({
-      username,
-      password: hashPass
+      email,
+      password: hashPass,
+      firstName,
+      lastName,
+      dob: req.body.dob,
+      nationality: req.body.nationality,
+      location: req.body.location,
+      langsOffered: req.body.langsOffered,
+      langsPractising: req.body.langsPractising,
     });
 
     newUser.save()
@@ -53,7 +65,8 @@ router.post("/signup", (req, res, next) => {
       res.render("auth/signup", { message: "Something went wrong" });
     })
   });
-});
+})
+
 
 router.get("/logout", (req, res) => {
   req.logout();
