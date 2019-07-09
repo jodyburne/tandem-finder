@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 
 const languageSchema = new Schema(
   {
-    _user1: { type: Schema.Types.ObjectId, ref: "User" },
+    _user: { type: Schema.Types.ObjectId, ref: "User" },
     language: {
       type: String,
       enum: ["English", "German", "French", "Italian", "Spanish", "Portuguese"],
