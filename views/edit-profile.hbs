@@ -1,47 +1,58 @@
-<h1>Edit Profile</h1>
-<form action="/edit-profile/{{user._id}}" method="POST" id="form-container" enctype="multipart/form-data"> 
+<div class="form-group w-50 m-auto text-center">
+  <h1>Edit Profile</h1>
+  <form action="/edit-profile/{{user._id}}" method="POST" id="form-container" enctype="multipart/form-data"
+    class="text-center">
 
-  <div class="form-row">
-    <div class="col-sm-12">
-      <textarea type="text" id="bio" name="bio" class="form-control" placeholder="Tell us about yourself"></textarea>
-    </div>
-    <div class="col-sm-6">
-      <input type="text" id="location" name="location" class="form-control" placeholder="Change location">
-    </div>
-    <br>
-  <div class="form-group col-sm-12">
-    <label for="picture">Picture</label> <br>
-    <input type="file" name="picture" id="picture" class="form-control">
-  </div>
-  </div>
+    <div class="form-row ">
+      <div class="col-12 ">
+        <textarea type="text" class="form-control text-center" rows="10" id="bio" name="bio" value="{{user.bio}}"
+          placeholder="Tell us about yourself! What are your interests? What do you do for a living? What are some of your favourite/most detested conversation topics?"></textarea>
+      <br>
+      </div>
+
+      <div class="col-12">
+        <label for="nationality" class="font-weight-bold">Nationality</label>
+        <input type="text" value="{{user.nationality}}" id="nationality" class="form-control text-center" name="nationality"
+          placeholder="Where are you from?"><br>
+      </div> 
 
 
+      <div class="col-12 ">      
+        <label for="dateOfBirth" class="font-weight-bold">Date of birth</label>
 
-  <br> <br>
-  <p>What is your native language(s)?</p>
-  <select class="custom-select" multiple>
-    <option value="english">English</option>
-    <option value="french">French</option>
-    <option value="german">German</option>
-    <option value="spanish">Spanish</option>
-    <option value="italian">Italian</option>
-    <option value="portuguese">Portuguese</option>
-  </select>
+        <input type="date" value="{{user.dateOfBirth}}" id="dateOfBirth" class="form-control" name="dateOfBirth">
+      <br>
+      </div>
 
-  <br> <br>
-  <p>What language(s) are you practising?</p>
-  <select class="custom-select" multiple>
-    <option value="english">English</option>
-    <option value="french">French</option>
-    <option value="german">German</option>
-    <option value="spanish">Spanish</option>
-    <option value="italian">Italian</option>
-    <option value="portuguese">Portuguese</option>
-  </select>
+{{!-- ugly file upload --}}
+      <div class="form-group col-12">
+        <label for="picture" class="font-weight-bold">Upload a profile picture</label> <br>
+        <input type="file"  name="picture" id="picture" class="form-control">
+      </div>
 
-  <br><br>
 
-  <button type="submit" class="btn btn-primary">Update account</button>
-  <br> <br>
+{{!-- bootstrap file upload --}}
+      {{!-- <div class="input-group">
   
+  <div class="custom-file">
+    <input type="file" class="custom-file-input" id="inputGroupFile01"
+      aria-describedby="inputGroupFileAddon01">
+    <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+  </div>
+</div>  --}}
+
+
+
+
+
+    </div>
+
+
+
+<br><br>
+
+<button type="submit" class="btn btn-primary">Update account</button>
+<br> <br>
+
 </form>
+</div>
