@@ -80,6 +80,14 @@ app.use('/', index);
 
 const authRoutes = require('./routes/auth');
 app.use('/auth', authRoutes);
+
+const profilRoutes = require('./routes/profil');
+app.use('/profil', profilRoutes);
       
+const tandemRoutes = require('./routes/tandem');
+app.use('/tandem', tandemRoutes);
+
+const languageRoutes = require('./routes/language');
+app.use('/language', languageRoutes);
 
 module.exports = app;

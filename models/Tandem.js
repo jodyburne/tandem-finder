@@ -3,15 +3,20 @@ const Schema = mongoose.Schema;
 
 const tandemSchema = new Schema(
   {
-    _user1: { type: Schema.Types.ObjectId, ref: "User" }, 
-    _user2: { type: Schema.Types.ObjectId, ref: "User" },
-    isAccepted: {type: String, default: 'pending', enum: ['pending', 'accepted']},
-    messages: [ {
-      text: String,
-      date: Date,
-      _creator: { type: Schema.Types.ObjectId, ref: "User" } 
-    }]
-
+    _proposer: { type: Schema.Types.ObjectId, ref: "User" },
+    _proposedTo: { type: Schema.Types.ObjectId, ref: "User" },
+    status_proposer: {
+      type: string,
+      enum: [accept, decline],
+      default: "accept"
+    },
+    status_proposer: {
+      type: string,
+      enum: [accept, decline, pending],
+      default: "pending"
+    },
+    language_proposer: { type: Schema.Types.ObjectId, ref: "Language" },
+    language_proposedTo: { type: Schema.Types.ObjectId, ref: "Language" }
   },
   {
     timestamps: {
