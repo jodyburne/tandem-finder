@@ -14,14 +14,13 @@ router.get("/view", (req, res, next) => {
   });
 });
 
-router.get("/edit-profile/:userId", (req, res, next) => {
+router.get("/edit/:userId", (req, res, next) => {
   User.findById(req.params.userId).then(user => {
-    res.render("edit-profile", { user: user });
+    res.render("profil/edit", { user: user });
   });
 });
 
-router.post(
-  "/edit-profile/:userId",
+router.post("/edit/:userId",
   uploadCloud.single("picture"),
   (req, res, next) => {
     let userImg = "";
@@ -38,7 +37,7 @@ router.post(
       profilePic: userImg
     }).then(user => {
       // Redirect to the detail page of the item
-      res.redirect("/");
+      res.redirect("/profil/view");
     });
   }
 );

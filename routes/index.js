@@ -8,7 +8,6 @@ const User = require("../models/User");
 /* GET home page */
 router.get('/', (req, res, next) => {
   let user = req.user
-
   res.render('index', {user});
 });
 

@@ -1,6 +1,6 @@
 <div class="form-group w-50 m-auto text-center">
   <h1>Edit Profile</h1>
-  <form action="/edit-profile/{{user._id}}" method="POST" id="form-container" enctype="multipart/form-data"
+  <form action="/profil/edit/{{user._id}}" method="POST" id="form-container" enctype="multipart/form-data"
     class="text-center">
 
     <div class="form-row ">
@@ -20,7 +20,7 @@
       <div class="col-12 ">      
         <label for="dateOfBirth" class="font-weight-bold">Date of birth</label>
 
-        <input type="date" value="{{user.dateOfBirth}}" id="dateOfBirth" class="form-control" name="dateOfBirth">
+        <input type="date" value="{{formatBirthDate user.dateOfBirth}}" id="dateOfBirth" class="form-control" name="dateOfBirth">
       <br>
       </div>
 
