@@ -18,12 +18,22 @@ router.get('/edit-profile/:userId', (req, res, next) => {
 });
 
 router.post("/edit-profile/:userId", uploadCloud.single('picture'), (req, res, next) => {
-      // console.log("BUUUUUGGG", req.file)
+    console.log("BUUUUUGGG", req.user)
+    console.log("!!!!!!!!!!!!", req.file )
+    let userImg =""
+    if (req.file) {
+      userImg = req.file.secure_url
+    }
+    else {
+      userImg = req.user.profilePic
+    }
     User.findByIdAndUpdate(req.params.userId, {
+    
     bio: req.body.bio,
-    location: req.body.location,
-    profilePic: req.file.secure_url
-  
+    nationality: req.body.nationality,
+    dateOfBirth: req.body.dateOfBirth,
+    profilePic: userImg,
+
   })
     .then(user => {
       // Redirect to the detail page of the item

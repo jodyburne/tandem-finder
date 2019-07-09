@@ -1,65 +1,37 @@
+<div class="form-group w-50 m-auto" >
 <h2>Signup</h2>
-<form action="/auth/signup" method="POST" id="form-container">
+<form action="/auth/signup" method="POST" id="form-container" >
 
   <div class="form-row">
-    <div class="col-sm-6">
-      <input type="text" id="firstName" name="firstName" class="form-control" placeholder="First name">
+    <div class="col-12">
+      <input type="text" id="firstName" class="form-control" name="firstName" placeholder="First name">
     </div>
-    <div class="col-sm-6">
-      <input type="text" id="lastName" name="lastName" class="form-control" placeholder="Last name">
+    <div class="col-12">
+      <input type="text" id="lastName" class="form-control" name="lastName" placeholder="Last name">
     </div>
-    <div class="col-sm-6">
-      <input type="text" id="password" name="password" class="form-control" placeholder="Password">
+    <div class="col-12">
+      <input type="text" id="password"class="form-control"  name="password" placeholder="Password">
     </div>
-    <div class="col-sm-6">
-      <input type="text" id="email" name="email" class="form-control" placeholder="Email">
+    <div class="col-12">
+      <input type="text" id="email" class="form-control" name="email" placeholder="Email">
     </div>
-    <div class="col-sm-6">
-      <input type="text" id="nationality" name="nationality" class="form-control" placeholder="Nationality">
-    </div>
-    <div class="col-sm-6">
-      <input type="text" id="location" name="location" class="form-control" placeholder="Location">
-    </div>
-
-    <div class="col-md-3"><br><br>
-      <p>Please enter your date of birth</p>
-      <input type="date" id="dob" name="dob" class="form-control" placeholder="date of birth">
-    </div>
-  </div>
-
-  <br> <br>
-  <p>What is your native language(s)?</p>
-  <select class="custom-select" multiple>
-    <option value="english">English</option>
-    <option value="french">French</option>
-    <option value="german">German</option>
-    <option value="spanish">Spanish</option>
-    <option value="italian">Italian</option>
-    <option value="portuguese">Portuguese</option>
-  </select>
-
-  <br> <br>
-  <p>What language(s) are you practising?</p>
-  <select class="custom-select" multiple>
-    <option value="english">English</option>
-    <option value="french">French</option>
-    <option value="german">German</option>
-    <option value="spanish">Spanish</option>
-    <option value="italian">Italian</option>
-    <option value="portuguese">Portuguese</option>
-  </select>
-
-
-  {{#if message }}
-  <div class="error-message">{{ message }}</div>
-  {{/if}}
 
   <br><br>
-
+<div class="col-12">
   <button type="submit" class="btn btn-primary">Create account</button>
-  <br> <br>
+  <br> <br></div>
   <p class="account-message">
     Already have an account?
     <a href="/auth/login">Login</a>
   </p>
+ 
 </form>
+
+<br> <br>
+
+
+ </div>
+ 
+  {{#if message }}
+  <div class="error-message">{{ message }}</div>
+  {{/if}}

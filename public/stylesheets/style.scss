@@ -1,8 +1,12 @@
+$primary: #222CCB;
+$secondary: #F57816;
+@import '../../node_modules/bootstrap/scss/bootstrap.scss';
+
+
 body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
-@import '../../node_modules/bootstrap/scss/bootstrap.scss';
 
 
 a {
