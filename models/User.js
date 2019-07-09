@@ -7,9 +7,9 @@ const userSchema = new Schema(
     password: { type: String, required: true },
     firstName: { type: String, required: true },
     lastName: { type: String, required: true },
-    dateOfBirth: { type: Date, required: true },
+    dateOfBirth: { type: Date,  },
     profilePic: { type: String, default: "../images/munari.jpg" },
-    nationality: { type: String, required: true },
+    nationality: { type: String, },
     bio: String,
   },
   {
