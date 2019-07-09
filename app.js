@@ -13,6 +13,8 @@ const session = require("express-session");
 const MongoStore = require("connect-mongo")(session);
 const flash = require("connect-flash");
 
+const moment = require("moment");
+
 mongoose
   .connect("mongodb://localhost/w6", { useNewUrlParser: true })
   .then(x => {
@@ -65,6 +67,15 @@ hbs.registerHelper("ifUndefined", (value, options) => {
 hbs.registerHelper("formatDate", value => {
   try {
     return moment(value).format("DD.MM.YYYY, HH:mm ");
+  } catch (err) {
+    console.log(err);
+  }
+  return value;
+});
+
+hbs.registerHelper("formatBirthDate", value => {
+  try {
+    return moment(value).format("DD.MM.YYYY");
   } catch (err) {
     console.log(err);
   }

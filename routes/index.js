@@ -7,8 +7,11 @@ const User = require("../models/User");
 
 /* GET home page */
 router.get('/', (req, res, next) => {
-  res.render('index');
+  let user = req.user
+
+  res.render('index', {user});
 });
+
 router.get('/edit-profile/:userId', (req, res, next) => {
   User.findById(req.params.userId)
   .then(user => {
