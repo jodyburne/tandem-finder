@@ -24,7 +24,7 @@ router.get("/signup", (req, res, next) => {
 });
 
 router.post("/signup", (req, res, next) => {
-  console.log('passwoooord', req.body)
+  console.log('passwoooord', req.body.email)
   const email = req.body.email
   const firstName = req.body.firstName
   const lastName = req.body.lastName;
@@ -50,11 +50,7 @@ router.post("/signup", (req, res, next) => {
       password: hashPass,
       firstName,
       lastName,
-      dob: req.body.dob,
-      nationality: req.body.nationality,
-      location: req.body.location,
-      langsOffered: req.body.langsOffered,
-      langsPractising: req.body.langsPractising,
+     
     });
 
     newUser.save()
