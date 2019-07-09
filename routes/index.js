@@ -18,13 +18,13 @@ router.get('/edit-profile/:userId', (req, res, next) => {
 });
 
 router.post("/edit-profile/:userId", uploadCloud.single('picture'), (req, res, next) => {
-    console.log("BUUUUUGGG", req.user)
-    console.log("!!!!!!!!!!!!", req.file )
+    
     let userImg =""
     if (req.file) {
       userImg = req.file.secure_url
     }
     else {
+      console.log('req undefined')
       userImg = req.user.profilePic
     }
     User.findByIdAndUpdate(req.params.userId, {
