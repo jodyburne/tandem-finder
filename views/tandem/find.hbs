@@ -1,15 +1,19 @@
+
 <div class="border p-5 mt-5 mb-5">
 <h1 class="text-primary mb-4">I want to practise my </h1>
 <form action="/language/add" method="POST">
+<form action="/tandem/find-lang" method="get">
   <div class="row mt-2">
     <div class="form-group col-12 col-md-4">
-      <select class="form-control" name="languages" id="languages">
+      <select class="form-control" name="language" id="language">
         {{#each languages}}
         <option value="{{this.language}}">{{this.language}}</option>
         {{/each}}
       </select>
     </div>
+    
     <div class="col-12 col-md-4"><button type="submit" class="btn btn-secondary btn-block">Search</button></div>
+        
   </div>
 </form>
 </div>

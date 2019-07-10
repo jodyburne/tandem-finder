@@ -17,11 +17,21 @@ router.get("/find", checkLogin, (req, res, next) => {
   });
 });
 
-router.post("/find", checkLogin, (req, res, next) => {
-  let languageWanted = req.body.language;
+router.get("/find-lang", (req, res, next) => {
+  console.log('hello', req.user)
+  let languageWanted = req.query.language
+  let userLevel
   let user = req.user;
   Language.find({ _user: user.id }).then(languages => {
     console.log("user's languages: ", languages);
+    for (let i = 0; i < languages.length; i++){
+    if (languages[i].language === languageWanted) {
+       userLevel = languages[i].level
+    }}
+    Language.find({language: languageWanted, level: {$gt: userLevel }}).then(languages => {
+      console.log('searcch results', languages)
+    })
+    // console.log(languageWanted, userLevel)
     res.render("tandem/find", { user, languages });
   });
 });
