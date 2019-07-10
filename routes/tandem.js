@@ -18,12 +18,17 @@ router.get("/find", checkLogin, (req, res, next) => {
 });
 
 router.post("/find", checkLogin, (req, res, next) => {
-  let languageWanted = req.body.language
+  let languageWanted = req.body.language;
   let user = req.user;
   Language.find({ _user: user.id }).then(languages => {
     console.log("user's languages: ", languages);
     res.render("tandem/find", { user, languages });
   });
+});
+
+router.get("/all", checkLogin, (req, res, next) => {
+  let user = req.user
+  res.render("tandem/all", {user});
 });
 
 module.exports = router;
