@@ -1,37 +1,37 @@
-<div class="form-group w-50 m-auto" >
-<h2 class="text-primary">Signup</h2>
-<form action="/auth/signup" method="POST" id="form-container" >
+<div class="form-group w-50 m-auto">
+  <h2 class="text-primary">Signup</h2>
+  <form action="/auth/signup" method="POST" id="form-container">
 
-  <div class="form-row">
-    <div class="col-12">
-      <input type="text" id="firstName" class="form-control" name="firstName" placeholder="First name">
-    </div>
-    <div class="col-12">
-      <input type="text" id="lastName" class="form-control" name="lastName" placeholder="Last name">
-    </div>
-    <div class="col-12">
-      <input type="password" id="password"class="form-control"  name="password" placeholder="Password">
-    </div>
-    <div class="col-12">
-      <input type="text" id="email" class="form-control" name="email" placeholder="Email">
-    </div>
+    <div class="form-row">
+      <div class="col-12">
+        <input type="text" id="firstName" class="form-control" name="firstName" placeholder="First name">
+      </div>
+      <div class="col-12">
+        <input type="text" id="lastName" class="form-control" name="lastName" placeholder="Last name">
+      </div>
+      <div class="col-12">
+        <input type="password" id="password" class="form-control" name="password" placeholder="Password">
+      </div>
+      <div class="col-12">
+        <input type="text" id="email" class="form-control" name="email" placeholder="Email">
+      </div>
 
-  <br><br>
-<div class="col-12">
-  <button type="submit" class="btn btn-primary">Create account</button>
-  <br> <br></div>
-  <p class="account-message">
-    Already have an account?
-    <a href="/auth/login">Login</a>
-  </p>
- 
-</form>
+      <br><br>
+      <div class="col-12">
+        <button type="submit" class="btn btn-primary">Create account</button>
+        <br> <br></div>
+      <p class="account-message">
+        Already have an account?
+        <a href="/auth/login">Login</a>
+      </p>
 
-<br> <br>
+  </form>
+
+  <br> <br>
 
 
- </div>
- 
-  {{#if message }}
-  <div class="error-message">{{ message }}</div>
-  {{/if}}
+</div>
+
+{{#if message }}
+<div class="error-message">{{ message }}</div>
+{{/if}}
