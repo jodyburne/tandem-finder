@@ -5,14 +5,14 @@ const tandemSchema = new Schema(
   {
     _proposer: { type: Schema.Types.ObjectId, ref: "User" },
     _proposedTo: { type: Schema.Types.ObjectId, ref: "User" },
-    status_proposer: {
-      type: string,
-      enum: [accept, decline],
+    status_proposer: { // take care of this later
+      type: String,
+      enum: ['accept', 'decline'],
       default: "accept"
     },
-    status_proposer: {
-      type: string,
-      enum: [accept, decline, pending],
+    status_proposedTo: {
+      type: String,
+      enum: ['accept', 'decline', 'pending'],
       default: "pending"
     },
     language_proposer: { type: Schema.Types.ObjectId, ref: "Language" },
