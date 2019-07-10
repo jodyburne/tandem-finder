@@ -26,7 +26,7 @@ router.get("/signup", (req, res, next) => {
 });
 
 router.post("/signup", (req, res, next) => {
-  console.log("passwoooord", req.body.email);
+  
   const email = req.body.email;
   const firstName = req.body.firstName;
   const lastName = req.body.lastName;
