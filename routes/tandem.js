@@ -45,4 +45,6 @@ router.get("/all", checkLogin, (req, res, next) => {
   res.render("tandem/all", { user });
 });
 
+
+
 module.exports = router;
