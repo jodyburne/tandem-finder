@@ -39,6 +39,6 @@ router.get("/find-lang", (req, res, next) => {
 router.get("/all", checkLogin, (req, res, next) => {
   let user = req.user
   res.render("tandem/all", {user});
-});
+}); 
 
 module.exports = router;
