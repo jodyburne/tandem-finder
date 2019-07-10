@@ -13,7 +13,7 @@
 
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container">
-      <a class="navbar-brand font" href="/"><span class="font">speakEasy</span></a>
+      <a class="navbar-brand font" href="/"><span class="text-primary">speak</span><span class="text-secondary">E</span><span class="text-primary">asy</span></a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#myNavBar"
         aria-controls="myNavBar" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -23,24 +23,24 @@
         <ul class="navbar-nav ml-auto">
           <li class="nav-item ml-3">
             {{#unless user}}
-            <a class="nav-link active" href="/auth/signup"><span class="font"></span>Sign Up</a>
+            <a class="nav-link active" href="/auth/signup"><span class="text-primary"></span>Sign Up</a>
           </li>
           <li class="nav-item  ml-3">
-            <a class="nav-link" href="/auth/login"><span class="font">Login</span></a>
+            <a class="nav-link" href="/auth/login"><span class="text-primary">Login</span></a>
           </li>
           {{/unless}}
           {{#if user}}
           <li class="nav-item ml-3">
-            <a class="nav-link" href="/profil/view"><span class="font">My Profile</span></a>
+            <a class="nav-link" href="/profil/view"><span class="text-primary">My Profile</span></a>
           </li>
           <li class="nav-item ml-3">
-            <a class="nav-link" href="/tandem/find"><span class="font">Find a Tandem</span></a>
+            <a class="nav-link" href="/tandem/find"><span class="text-primary">Find a Tandem</span></a>
           </li>
           <li class="nav-item ml-3">
-            <a class="nav-link" href="/tandem/all"><span class="font">My Tandems</span></a>
+            <a class="nav-link" href="/tandem/all"><span class="text-primary">My Tandems</span></a>
           </li>
           <li class="nav-item ml-3">
-            <a class="nav-link" href="/auth/logout"><span class="font">Logout</span></a>
+            <a class="nav-link" href="/auth/logout"><span class="text-primary">Logout</span></a>
           </li>
           {{/if}}
 
