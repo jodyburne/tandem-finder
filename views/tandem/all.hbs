@@ -1,6 +1,6 @@
  <div class="border p-5 mt-5 mb-5">
 <h1 class="text-primary mb-5">All Tandems</h1>
-<h3 class="text-secondary mt-5">Invitations waiting for Answer</h3>
+<h3 class="text-secondary mt-5">Awaiting your Response</h3>
  <div>
   <table class="mt-4 table">
     <thead>
@@ -11,15 +11,17 @@
       </tr>
     </thead>
     <tbody>
+      {{#each received}}
       <tr>
-        <th scope="row"></th>
-        <td></td>
-        <td></td>
+        <th scope="row">{{this._proposer.firstName}}</th>
+        <td>{{formatDate this.created_at}}</td>
+        <td><a href="/tandem/accept/{{this.id}}"><span class="text-primary far fa-check-circle"></span></a><a class="ml-4" href="/profil/view/{{this._proposer._id}}"><span class="text-primary fas fa-user"></span></a><a class="ml-4" href="/tandem/decline/{{this.id}}"><span class="text-secondary fas fa-ban "></span></a></td>
       </tr>
+      {{/each}}
     </tbody>
   </table>
   </div>
-<h3 class="text-secondary mt-5">Open Invitations</h3>
+<h3 class="text-secondary mt-5">Sent Invitations</h3>
  <div>
   <table class=" mt-4 table">
     <thead>
@@ -30,11 +32,13 @@
       </tr>
     </thead>
     <tbody>
+      {{#each sent}}
       <tr>
-        <th scope="row"></th>
-        <td></td>
-        <td></td>
+        <th scope="row">{{this._proposedTo.firstName}}</th>
+        <td>{{formatDate this.created_at}}</td>
+        <td><a href="/profil/view/{{this._proposedTo._id}}"><span class="text-primary fas fa-user"></span></a><a class="ml-4" href="/tandem/decline/{{this.id}}"><span class="text-secondary fas fa-ban "></span></a></td>
       </tr>
+      {{/each}}
     </tbody>
   </table>
   </div>
@@ -49,12 +53,17 @@
       </tr>
     </thead>
     <tbody>
+    {{#each active}}
       <tr>
         <th scope="row"></th>
-        <td></td>
-        <td></td>
+        <td>{{formatDate this.created_at}}</td>
+        <td><a class="ml-4" href="/tandem/details/{{this.id}}"><span class="text-primary fas fa-info-circle "></span></a><a class="ml-4" href="/tandem/decline/{{this.id}}"><span class="text-secondary fas fa-ban "></span></a></td>
       </tr>
+      {{/each}}
     </tbody>
   </table>
   </div>
   </div>
+
+
+fas fa-info-circle

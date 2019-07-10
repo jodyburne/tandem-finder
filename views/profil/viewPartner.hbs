@@ -1,0 +1,83 @@
+<section id="profil">
+  <div class="border p-5 mt-5 mb-5">
+  <div class="row">
+    <div class=" col-12 col-md-10">
+      <h1 class="text-primary">Welcome to my Profile!</h1>
+    </div>
+  </div>
+  <div class="mt-5 mb-5"><img src="{{foundUser.profilePic}}" alt="profile-pic" width="150"></div>
+  <div class="row mt-3">
+    <div class="col-6 col-md-3 text-primary">Firstname:</div>
+    <div class="col-6 col-md-3"> {{foundUser.firstName}}</div>
+    <div class="col-6 col-md-3 text-primary">Lastname:</div>
+    <div class="col-6 col-md-3">{{foundUser.lastName}}</div>
+  </div>
+  <div class="row mt-3">
+    <div class="col-6 col-md-3 text-primary">Birthday:</div>
+    <div class="col-6 col-md-3">{{formatBirthDate foundUser.dateOfBirth}}</div>
+    <div class="col-6 col-md-3 text-primary">Nationality:</div>
+    <div class="col-6 col-md-3">{{foundUser.nationality}}</div>
+  </div>
+  <div class="row mt-3">
+    <div class="col-6 col-md-3 text-primary">E-Mail:</div>
+    <div class="col-6 col-md-3">{{foundUser.email}}</div>
+  </div>
+    <div class="row mt-3">
+    <div class="col-3 col-md-3 text-primary">Biography:</div>
+    <div class="col-9 col-md-9 text-justify">{{foundUser.bio}}</div>
+  </div>
+</div>
+</section>
+
+
+{{!-- <section id="language">
+  <div class="border p-5 mt-5 mb-5">
+  <div class="row">
+    <h1 class="col-12 text-primary">My Languages</h1>
+  </div>
+  <div class="row">
+    <h4 class="mt-3 mb-3 col-12 text-secondary">Add A Language</h4>
+  </div>
+  <form action="/language/add" method="POST">
+    <div class="row mt-2">
+      <div class="form-group col-12 col-md-4">
+        <select class="form-control" name="language">
+          <option>English</option>
+          <option>German</option>
+          <option>French</option>
+          <option>Italian</option>
+          <option>Spanish</option>
+          <option>Portuguese</option>
+        </select>
+      </div>
+      <div class="form-group col-12 col-md-4">
+        <select class="form-control" name="level">
+          <option value="1">Beginner</option>
+          <option value="2">Intermediate</option>
+          <option value="3">Advanced</option>
+        </select>
+      </div>
+      <div class="col-12 col-md-4"><button type="submit" class="btn btn-secondary btn-block">Add Language</button></div>
+    </div>
+  </form>
+  <table class=" mt-4 table">
+    <thead>
+      <tr>
+        <th scope="col">Language</th>
+        <th scope="col">Level</th>
+        <th scope="col">Operations</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each languages}}
+      <tr>
+        <th scope="row">{{this.language}}</th>
+        <td>{{formatLevel this.level}}</td>
+        <td><a class="ml-5 mr-5 text-decoration-none" href="/language/edit/{{this._id}}">EDIT</a><a
+            class="ml-5 mr-5 text-decoration-none" href="/language/delete/{{this._id}}">DELETE</a></td>
+      </tr>
+      {{/each}}
+    </tbody>
+  </table>
+  </div>
+</section> --}}

@@ -44,4 +44,16 @@ router.post("/edit/:userId",checkLogin,
   }
 );
 
+
+router.get("/view/:id", checkLogin,(req, res, next) => {
+  let user = req.user;
+  let searchedUserId = req.params.id
+  User.findById(searchedUserId)
+  .then((foundUser) => {
+    res.render("profil/viewPartner", {user, foundUser });
+  });
+});
+
+
+
 module.exports = router;
