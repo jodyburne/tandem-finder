@@ -5,8 +5,8 @@
 
     <div class="form-row ">
       <div class="col-12 ">
-        <textarea type="text" class="form-control text-center" rows="10" id="bio" name="bio" value="{{user.bio}}"
-          placeholder="Tell us about yourself! What are your interests? What do you do for a living? What are some of your favourite/most detested conversation topics?"></textarea>
+        <textarea type="text" class="form-control text-center" rows="10" id="bio" name="bio"
+          placeholder="Tell us about yourself! What are your interests? What do you do for a living? What are some of your favourite/most detested conversation topics?">{{user.bio}}</textarea>
       <br>
       </div>
 
@@ -20,7 +20,7 @@
       <div class="col-12 ">      
         <label for="dateOfBirth" class="font-weight-bold">Date of birth</label>
 
-        <input type="date" value="{{formatBirthDate user.dateOfBirth}}" id="dateOfBirth" class="form-control" name="dateOfBirth">
+        <input type="date" id="dateOfBirth" class="form-control" name="dateOfBirth">
       <br>
       </div>
 
