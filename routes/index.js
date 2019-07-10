@@ -7,7 +7,8 @@ const User = require("../models/User");
 
 /* GET home page */
 router.get('/', (req, res, next) => {
-  res.render('index');
+  let user = req.user
+  res.render('index', {user});
 });
 
 
