@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <div class="form-group w-50 m-auto">
   <h2 class="text-primary">Signup</h2>
   <form action="/auth/signup" method="POST" id="form-container">
@@ -35,3 +36,29 @@
 {{#if message }}
 <div class="error-message">{{ message }}</div>
 {{/if}}
+=======
+<div class="mt-5 row d-flex flex-column text-center ">
+  <div class="offset-4 col-4 border m-auto p-5 ">
+    <div class="container">
+      <form action="/auth/signup" method="POST" id="form-container">
+        <h2 class="text-primary">Sign Up</h2>
+        <div class="m-4"> <label for="firstName">Firstname</label><br />
+          <input id="firstName" type="text" name="firstName" placeholder="Jon"></div>
+        <div class="m-4"> <label for="lastName">Lastname</label><br />
+          <input id="lastName" type="text" name="lastName" placeholder="Snow"></div>
+        <div class="m-4"> <label for="email">E-Mail</label><br />
+          <input id="email" type="text" name="email" placeholder="JonSnow@north.com"></div>
+        <div class="m-4"> <label for="password">Password</label><br />
+          <input id="password" type="password" name="password" placeholder="Your password"></div>
+        <div class="m-4 mt-5"><button class="btn btn-primary btn-block">Sign Up</button></div>
+      </form>
+      <div class="mt-5 text-muted"><a class="text-decoration-none text-muted" href="/auth/login">Allready have an
+          Account?</a>
+      </div>
+      {{#if message }}
+      <div class="alert alert-danger mt-5" role="alert">{{ message }}</div>
+      {{/if}}
+    </div>
+  </div>
+</div>
+>>>>>>> e49cc2d5cdaef49b71830debf885f05c06ed02bf
