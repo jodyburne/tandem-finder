@@ -1,3 +1,4 @@
+<section id="search">
 <div class="border p-5 mt-5 mb-5 text-center">
   <h1 class="text-primary mb-4">I want to practise my </h1>
 
@@ -23,3 +24,15 @@
     </div>
   </form>
 </div>
+</section>
+
+
+
+<section id="results">
+    {{#if userFinal}}
+<h1>Your Search for {{languageWanted}}</h1>
+  {{#each userFinal}}
+  <p>{{this.firstName}}, {{this.lastName}}, <a href="/tandem/create/{{this._id}}">Propose a Tandem</a></p>
+ {{/each}} 
+     {{/if}}
+</section>

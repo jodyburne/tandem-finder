@@ -4,6 +4,7 @@ const router = express.Router();
 // const multer  = require('multer');
 const User = require("../models/User");
 const Language = require("../models/Language");
+const Tandem = require("../models/Tandem");
 
 const { checkLogin } = require("../middlewares");
 
@@ -18,26 +19,56 @@ router.get("/find", checkLogin, (req, res, next) => {
 });
 
 router.get("/find-lang", (req, res, next) => {
-  console.log("hello", req.user);
   let languageWanted = req.query.language;
-  let userLevel;
+  let languageOffered = req.query.langOffer;
+  let wantedLevel;
+  let offeredLevel;
   let user = req.user;
-  Language.find({ _user: user.id }).then(languages => {
-    console.log("user's languages: ", languages);
-    for (let i = 0; i < languages.length; i++) {
-      if (languages[i].language === languageWanted) {
-        userLevel = languages[i].level;
+
+  Language.find({ _user: user.id })
+    .then(languages => {
+      console.log("user's languages: ", languages);
+      for (let i = 0; i < languages.length; i++) {
+        if (languages[i].language === languageWanted) {
+          wantedLevel = languages[i].level;
+        }
       }
-    }
-    console.log("DEBUG: ", userLevel)
-    Language.find({ language: languageWanted, level: { $gt: userLevel } }).then(
-      languages => {
-        console.log("searcch results", languages);
+      for (let i = 0; i < languages.length; i++) {
+        if (languages[i].language === languageOffered) {
+          offeredLevel = languages[i].level;
+        }
       }
-    );
-    // console.log(languageWanted, userLevel)
-    res.render("tandem/find", { user, languages });
-  });
+    })
+    .then(() => {
+      Promise.all([
+        Language.find({
+          language: languageWanted,
+          level: { $gt: wantedLevel }
+        }).populate("_user"),
+        Language.find({
+          language: languageOffered,
+          level: { $lt: offeredLevel }
+        }).populate("_user")
+      ]).then(([offered, wanted]) => {
+        let userOffered = offered.map(offer => offer._user);
+        let userWanted = wanted.map(wanted => wanted._user);
+        let userFinal = [];
+
+        for (let i = 0; i < userOffered.length; i++) {
+          for (let j = 0; j < userWanted.length; j++) {
+            if (userOffered[i].toString() === userWanted[j].toString()) {
+              userFinal.push(userWanted[j]);
+            }
+          }
+        }
+        res.render("tandem/find", {
+          userFinal,
+          user,
+          languageOffered,
+          languageWanted
+        });
+      });
+    });
 });
 
 router.get("/all", checkLogin, (req, res, next) => {
@@ -45,6 +76,13 @@ router.get("/all", checkLogin, (req, res, next) => {
   res.render("tandem/all", { user });
 });
 
-
+router.get("/create/:id", checkLogin, (req, res, next) => {
+  let proposedId = req.params.id;
+  let userId = req.user.id;
+  let user = req.user
+  Tandem.create({ _proposer: userId, _proposedTo: proposedId }).then(() => {
+    res.render("tandem/all", { user });
+  });
+});
 
 module.exports = router;
