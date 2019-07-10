@@ -5,8 +5,10 @@ const router = express.Router();
 const User = require("../models/User");
 const Language = require("../models/Language");
 
+const { checkLogin } = require("../middlewares");
 
-router.post("/add", (req, res, next) => {
+
+router.post("/add", checkLogin, (req, res, next) => {
   let language = req.body.language;
   let level = req.body.level;
   let userId = req.user.id;
@@ -18,12 +20,12 @@ router.post("/add", (req, res, next) => {
   );
 });
 
-router.get("/edit/:id", (req, res, next) => {
+router.get("/edit/:id", checkLogin, (req, res, next) => {
   let languageId = req.params.id;
   Language.findById(languageId);
 });
 
-router.get("/delete/:id", (req, res, next) => {
+router.get("/delete/:id", checkLogin, (req, res, next) => {
   let languageId = req.params.id;
   Language.findByIdAndDelete(languageId).then(language => {
     console.log("Language deleted:", language);

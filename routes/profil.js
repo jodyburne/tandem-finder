@@ -5,8 +5,10 @@ const router = express.Router();
 const User = require("../models/User");
 const Language = require("../models/Language");
 
+const { checkLogin } = require("../middlewares");
+
 /* GET home page */
-router.get("/view", (req, res, next) => {
+router.get("/view", checkLogin,(req, res, next) => {
   let user = req.user;
   Language.find({ _user: user.id }).then(languages => {
     console.log(languages);
@@ -14,13 +16,13 @@ router.get("/view", (req, res, next) => {
   });
 });
 
-router.get("/edit/:userId", (req, res, next) => {
+router.get("/edit/:userId", checkLogin, (req, res, next) => {
   User.findById(req.params.userId).then(user => {
     res.render("profil/edit", { user: user });
   });
 });
 
-router.post("/edit/:userId",
+router.post("/edit/:userId",checkLogin,
   uploadCloud.single("picture"),
   (req, res, next) => {
     let userImg = "";

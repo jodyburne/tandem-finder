@@ -4,9 +4,11 @@ const router  = express.Router();
 // const multer  = require('multer');
 const User = require("../models/User");
 
+const { checkLogin } = require("../middlewares");
+
 
 /* GET home page */
-router.get('/my-tandems', (req, res, next) => {
+router.get('/my-tandems', checkLogin, (req, res, next) => {
   res.render('my-tandems');
 })
 
