@@ -10,12 +10,20 @@ const { checkLogin } = require("../middlewares");
 /* GET home page */
 
 router.get("/find", checkLogin, (req, res, next) => {
-  let user = req.user
-  Language.find({_user: user.id})
-  .then((languages)=>{
-    console.log("user's languages: ", languages)
-    res.render("tandem/find",  {user, languages});
-  })
+  let user = req.user;
+  Language.find({ _user: user.id }).then(languages => {
+    console.log("user's languages: ", languages);
+    res.render("tandem/find", { user, languages });
+  });
+});
+
+router.post("/find", checkLogin, (req, res, next) => {
+  let languageWanted = req.body.language
+  let user = req.user;
+  Language.find({ _user: user.id }).then(languages => {
+    console.log("user's languages: ", languages);
+    res.render("tandem/find", { user, languages });
+  });
 });
 
 module.exports = router;
