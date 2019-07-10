@@ -1,15 +1,21 @@
-const express = require('express');
-const uploadCloud = require('../config/cloudinary.js');
-const router  = express.Router();
+const express = require("express");
+const uploadCloud = require("../config/cloudinary.js");
+const router = express.Router();
 // const multer  = require('multer');
 const User = require("../models/User");
+const Language = require("../models/Language");
 
 const { checkLogin } = require("../middlewares");
 
-
 /* GET home page */
-router.get('/my-tandems', checkLogin, (req, res, next) => {
-  res.render('my-tandems');
-})
+
+router.get("/find", checkLogin, (req, res, next) => {
+  let user = req.user
+  Language.find({_user: user.id})
+  .then((languages)=>{
+    console.log("user's languages: ", languages)
+    res.render("tandem/find",  {user, languages});
+  })
+});
 
 module.exports = router;
