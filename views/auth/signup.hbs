@@ -1,37 +1,71 @@
-<div class="form-group w-50 m-auto" >
-<h2>Signup</h2>
-<form action="/auth/signup" method="POST" id="form-container" >
-
-  <div class="form-row">
-    <div class="col-12">
-      <input type="text" id="firstName" class="form-control" name="firstName" placeholder="First name">
+<div class="mt-5 row d-flex flex-column text-center ">
+  <div class="offset-4 col-4 border p-5">
+    <div class="container">
+      <form action="/auth/login" method="POST" id="form-container">
+        <h2>Sign Up</h2>
+        <div class="m-4"> <label for="firstname">Firstname</label><br />
+          <input id="firstname" type="text" name="firstname" placeholder="Jon"></div>
+        <div class="m-4"> <label for="lastname">Lastname</label><br />
+          <input id="lastname" type="text" name="lastname" placeholder="Snow"></div>
+        <div class="m-4"> <label for="email">E-Mail</label><br />
+          <input id="email" type="text" name="email" placeholder="JonSnow@north.com"></div>
+        <div class="m-4"> <label for="password">Password</label><br />
+          <input id="password" type="password" name="password" placeholder="Your password"></div>
+        <div class="m-4 mt-5"><button class="btn btn-primary btn-block">Login</button></div>
+      </form>
+      <div class="mt-5 text-muted"><a class="text-decoration-none text-muted" href="/auth/login">Allready have an Account?</a>
+      </div>
+      {{#if message }}
+      <div class="alert alert-danger mt-5" role="alert">{{ message }}</div>
+      {{/if}}
     </div>
-    <div class="col-12">
-      <input type="text" id="lastName" class="form-control" name="lastName" placeholder="Last name">
-    </div>
-    <div class="col-12">
-      <input type="password" id="password"class="form-control"  name="password" placeholder="Password">
-    </div>
-    <div class="col-12">
-      <input type="text" id="email" class="form-control" name="email" placeholder="Email">
-    </div>
-
-  <br><br>
-<div class="col-12">
-  <button type="submit" class="btn btn-primary">Create account</button>
-  <br> <br></div>
-  <p class="account-message">
-    Already have an account?
-    <a href="/auth/login">Login</a>
-  </p>
- 
-</form>
-
-<br> <br>
+  </div>
+</div>
 
 
- </div>
- 
-  {{#if message }}
-  <div class="error-message">{{ message }}</div>
-  {{/if}}
+
+
+
+
+
+
+
+
+{{!-- 
+<div class="form-group w-50 m-auto">
+  <h2>Signup</h2>
+  <form action="/auth/signup" method="POST" id="form-container">
+
+    <div class="form-row">
+      <div class="col-12">
+        <input type="text" id="firstName" class="form-control" name="firstName" placeholder="First name">
+      </div>
+      <div class="col-12">
+        <input type="text" id="lastName" class="form-control" name="lastName" placeholder="Last name">
+      </div>
+      <div class="col-12">
+        <input type="password" id="password" class="form-control" name="password" placeholder="Password">
+      </div>
+      <div class="col-12">
+        <input type="text" id="email" class="form-control" name="email" placeholder="Email">
+      </div>
+
+      <br><br>
+      <div class="col-12">
+        <button type="submit" class="btn btn-primary">Create account</button>
+        <br> <br></div>
+      <p class="account-message">
+        Already have an account?
+        <a href="/auth/login">Login</a>
+      </p>
+
+  </form>
+
+  <br> <br>
+
+
+</div>
+
+{{#if message }}
+<div class="error-message">{{ message }}</div>
+{{/if}} --}}
