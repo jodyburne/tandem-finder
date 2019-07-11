@@ -1,22 +1,23 @@
- <div class="container main">
-<div class="mt-5 row d-flex flex-column text-center">
-  <div class="offset-4 col-4-md border m-auto  p-5">
-    <div class="container">
-      <form action="/auth/login" method="POST" id="form-container">
-        <h2 class="text-primary">Login</h2>
-        <div class="m-4"> <label for="email">E-Mail</label><br />
-          <input id="email" type="text" name="email" placeholder="JonSnow@north.com"></div>
-        <div class="m-4"> <label for="password">Password</label><br />
-          <input id="password" type="password" name="password" placeholder="Your password"></div>
-        <div class="m-4 mt-5"><button class="btn btn-primary btn-block">Login</button></div>
-      </form>
-      <div class="mt-5 text-muted"><a class="text-decoration-none text-muted" href="/auth/signup">Don't have an account
-          yet?</a>
+<div class="container main">
+  <div class="mt-5 row d-flex flex-column text-center">
+    <div class="offset-4 col-4-md border m-auto  p-5">
+      <div class="container">
+        <form action="/auth/login" method="POST" id="form-container">
+          <h2 class="text-primary">Login</h2>
+          <div class="m-4"> <label for="email">E-Mail</label><br />
+            <input id="email" type="text" name="email" placeholder="JonSnow@north.com"></div>
+          <div class="m-4"> <label for="password">Password</label><br />
+            <input id="password" type="password" name="password" placeholder="Your password"></div>
+          <div class="m-4 mt-5"><button class="btn btn-primary btn-block">Login</button></div>
+        </form>
+        <div class="mt-5 text-muted"><a class="text-decoration-none text-muted" href="/auth/signup">Don't have an
+            account
+            yet?</a>
+        </div>
+        {{#if message }}
+        <div class="alert alert-danger mt-5" role="alert">{{message}}</div>
+        {{/if}}
       </div>
-      {{#if message }}
-      <div class="alert alert-danger mt-5" role="alert">{{ message }}</div>
-      {{/if}}
     </div>
   </div>
-</div>
 </div>

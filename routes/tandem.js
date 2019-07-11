@@ -78,11 +78,19 @@ router.get("/find-lang", (req, res, next) => {
 
 router.get("/create/:id", checkLogin, (req, res, next) => {
   let proposedId = req.params.id;
+  let language = req.query.language
+  let langOffer = req.query.langOffer
   let userId = req.user.id;
   let user = req.user;
-  Tandem.create({ _proposer: userId, _proposedTo: proposedId }).then(() => {
+
+  Promise.all([
+    Language.find({_user: proposedId, language: language}),
+    Language.find({_user: userId, language: langOffer})
+  ]).then(([language, languageOffered]) => {
+    Tandem.create({ _proposer: userId, _proposedTo: proposedId, _language_proposer: languageOffered[0]._id, _language_proposedTo: language[0]._id }).then(() => {
     res.redirect("/tandem/all");
   });
+})
 });
 
 router.get("/all", checkLogin, (req, res, next) => {

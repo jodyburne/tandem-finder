@@ -38,9 +38,9 @@
     <h1 class="col-12 text-primary">My Languages</h1>
   </div>
   <div class="row">
-    <h4 class="mt-3 mb-3 col-12 text-secondary">Add A Language</h4>
+    <h4 class="mt-3 mb-3 col-12 text-secondary" id="language">Add A Language</h4>
   </div>
-  <form action="/language/add" method="POST">
+  <form action="/language/add#language" method="POST">
     <div class="row mt-2">
       <div class="form-group col-12 col-md-4">
         <select class="form-control" name="language">
@@ -81,6 +81,9 @@
       {{/each}}
     </tbody>
   </table>
+  {{#if createErr }}
+  <div class="alert alert-danger mt-5" role="alert">Please delete a Language before creating new!</div>
+  {{/if}}
   </div>
 </section>
 </div>
