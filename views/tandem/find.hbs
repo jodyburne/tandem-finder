@@ -68,7 +68,7 @@
         
         <th scope="row">  <a  href="/profil/view/{{this._id}}"> <img src="{{this.profilePic}}" class="rounded-circle" width="120" alt="profile photo"></a> </th>
         <td>{{this.firstName}} {{this.lastName}} <br> <br> <i>{{this.bio}}</i>  <br> </td>
-       <td> <a class="text-secondary" href="/tandem/create/{{this._id}}">Propose a Tandem</a></td>
+       <td> <a class="text-secondary" href="/tandem/create/{{this._id}}?lngOff={{../languageOffered}}&lngWntd={{../languageWanted}}">Propose a Tandem</a></td>
       </tr> {{/each}}
     </tbody>
   </table>

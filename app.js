@@ -82,6 +82,15 @@ hbs.registerHelper("formatBirthDate", value => {
   return value;
 });
 
+hbs.registerHelper("formatAge", value => {
+  try {
+    return moment().diff(value, 'years',false)
+  } catch (err) {
+    console.log(err);
+  }
+  return value;
+});
+
 hbs.registerHelper("formatLevel", value => {
   try {
     if (value === 1) {
