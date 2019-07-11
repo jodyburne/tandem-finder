@@ -1,38 +1,86 @@
-<section id="search">
-<div class="border p-5 mt-5 mb-5 text-center">
-  <h1 class="text-primary mb-4">I want to practise my </h1>
 
-  <form action="/tandem/find-lang" method="get">
-    <div class="row mt-2">
-      <div class="form-group col-12 col-md-4">
+<div class="container-fluid d-flex justify-content-center">
+<section id="search">
+<div class=" p-2 mt-2  text-center justify-content-center mb-5">
+
+
+  <form action="/tandem/find-lang" method="get" class="justify-content-center">
+    <div class="row mt-2 ">
+      <div class="form-group col-md-12 ">
+        <h2 class="text-primary mb-4">I want to practise my </h2>
+      </div></div>
+       <div class="row mt-2">
+      <div class="form-group col-md-12 center">
         <select class="form-control" name="language" id="language">
           {{#each languages}}
           <option value="{{this.language}}">{{this.language}}</option>
           {{/each}}
         </select>
-      </div>
-      <div class="form-group col-12 col-md-4">
-        <h1 class="text-primary mb-4 text-center">I can offer </h1>
+      </div> </div>
+             <div class="row mt-2 center">
+
+      <div class="form-group col-md-12 ">
+        <h2 class="text-primary mb-4 text-center">I can offer </h2>
+      </div></div>
+      <div class="row mt-2">
+      <div class="form-group col-md-12 center">
         <select class="form-control" name="langOffer" id="langOffer">
           {{#each languages}}
           <option value="{{this.language}}">{{this.language}}</option>
           {{/each}}
         </select>
       </div>
-      <div class="col-12 col-md-4"><button type="submit" class="btn btn-secondary btn-block">Search</button></div>
+      </div>
+            <div class="row mt-2 ">
 
-    </div>
+      <div class="form-group  col-md-12">
+      <button type="submit" class="btn btn-secondary">Search</button>
+      </div>
+      </div>
+
+    
   </form>
 </div>
 </section>
+</div>
 
+<div id="results" class="justify-content-center">
+  {{#if userFinal}}
+<section >
+<div class=" p-5 mt-5 mb-5">
 
+<h3 class="text-secondary mt-5 text-center">Your search results for {{languageWanted}}</h3>
+ <div>
+  <table class="mt-4 table table-borderless">
+    <thead>
+      <tr>
+        <th scope="col">Suitable Tandems</th> 
+      </tr>
+    </thead>
+    <tbody>
+      {{#each userFinal}}
+      <tr>
+        
+        <th scope="row"><img src="{{this.profilePic}}" width="100" alt="profile photo"> </th>
+        <td>{{this.firstName}} {{this.lastName}} <br> <i>{{this.bio}}</i>  <br> </td>
+       <td> <a class="text-secondary" href="/tandem/create/{{this._id}}">Propose a Tandem</a></td>
+      </tr> {{/each}}
+    </tbody>
+  </table>
+  <div class="text-center">
+  <br>
+<a href="/tandem/find"><button class="btn btn-secondary">{{tryAgainLink}}</button></a>
+  </div>
+  </div>
+  {{else}} 
+  <div class="text-center">
+<h3 class="text-primary">{{errMessage}}</h3> 
 
-<section id="results">
-    {{#if userFinal}}
-<h1>Your Search for {{languageWanted}}</h1>
-  {{#each userFinal}}
-  <p>{{this.firstName}}, {{this.lastName}}, <a href="/tandem/create/{{this._id}}">Propose a Tandem</a></p>
- {{/each}} 
-     {{/if}}
-</section>
+<a class="text-secondary" href="/tandem/find">{{tryAgainLink}}</a>
+ </div>
+ 
+</div>
+</section>{{/if}} 
+</div>
+
+  

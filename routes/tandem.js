@@ -65,7 +65,9 @@ router.get("/find-lang", (req, res, next) => {
           userFinal,
           user,
           languageOffered,
-          languageWanted
+          languageWanted,
+          errMessage: "Oh no! No tandems were found.  Try a different language?",
+          tryAgainLink: "Search again"
         });
       });
     });

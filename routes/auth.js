@@ -56,8 +56,12 @@ router.post("/signup", (req, res, next) => {
 
     newUser
       .save()
-      .then(() => {
-        res.redirect("/");
+
+        .then(() => {
+          passport.authenticate('local')(req, res, function () {
+            res.redirect('/');
+        })
+       
       })
       .catch(err => {
         console.log(err);
