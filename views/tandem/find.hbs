@@ -48,8 +48,51 @@
   </div>
 
 
+  
+<div id="results" class="justify-content-center ">
+<section >
+  {{#if userFinal}}
+<div class=" p-5 mt-5 mb-5">
 
-<div id="results" class="justify-content-center">
+<h3 class="text-secondary mt-5 text-center">Your search results for {{languageWanted}}</h3>
+ 
+  <table class="mt-4 table table-borderless">
+    <thead>
+      <tr>
+        <th scope="col">Suitable Tandems</th> 
+      </tr>
+    </thead>
+    <tbody>
+      {{#each userFinal}}
+      <tr>
+        
+        <th scope="row">  <a  href="/profil/view/{{this._id}}"> <img src="{{this.profilePic}}" class="rounded-circle" width="120" alt="profile photo"></a> </th>
+        <td>{{this.firstName}} {{this.lastName}} <br> <br> <i>{{this.bio}}</i>  <br> </td>
+       <td> <a class="text-secondary" href="/tandem/create/{{this._id}}">Propose a Tandem</a></td>
+      </tr> {{/each}}
+    </tbody>
+  </table>
+  <div class="text-center">
+  <br>
+<a href="/tandem/find"><button class="btn btn-secondary">{{tryAgainLink}}</button></a>
+  </div>
+  </div>
+  {{else}} 
+  <div class="text-center">
+<h3 class="text-primary">{{errMessage}}</h3> 
+
+<a class="text-secondary" href="/tandem/find">{{tryAgainLink}}</a>
+ </div>
+ 
+
+{{/if}} 
+</section>
+</div>
+</div>
+</div>
+
+{{!-- ======= --}}
+{{!-- <div id="results" class="justify-content-center">
   {{#if userFinal}}
   <section>
     <div class=" p-5 mt-5 mb-5">
@@ -86,5 +129,5 @@
 
     </div>
   </section>{{/if}}
-</div>
-</div>
+{{!-- >>>>>>> 1ee79fbbbeed97d24424740c27ccaf6293ed6661 --}}
+

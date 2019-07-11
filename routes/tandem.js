@@ -61,7 +61,7 @@ router.get("/find-lang", (req, res, next) => {
               userFinal.push(userWanted[j]);
             }
           }
-        }
+        } console.log(userFinal)
         res.render("tandem/find", {
           userFinal,
           user,
