@@ -9,7 +9,7 @@
       <div class="col-12 p-5 border">
         {{#each messages}}
         <p>{{this.content}}<br />
-          <span class="text-muted">posted by: {{this.postedBy}}, {{formatDate this.created_at}}</span></p>
+          <span class="text-muted small">posted by: {{this.postedBy}}, {{formatDate this.created_at}}</span></p>
         {{/each}}
       </div>
       {{else}}
