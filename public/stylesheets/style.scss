@@ -1,6 +1,7 @@
 $primary: #222CCB;
 $secondary: #F57816;
 
+@import url('https://fonts.googleapis.com/css?family=Montserrat&display=swap');
 
 @import '../../node_modules/bootstrap/scss/bootstrap.scss';
 
@@ -8,7 +9,8 @@ $secondary: #F57816;
 
 
 body {
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 17px;
   min-height: 100vh;
   display: flex;
   flex-direction: column;

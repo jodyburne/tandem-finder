@@ -127,4 +127,7 @@ app.use("/tandem", tandemRoutes);
 const languageRoutes = require("./routes/language");
 app.use("/language", languageRoutes);
 
+const messageRoutes = require("./routes/message");
+app.use("/message", messageRoutes);
+
 module.exports = app;
