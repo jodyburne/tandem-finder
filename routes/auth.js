@@ -32,8 +32,25 @@ router.post("/signup", (req, res, next) => {
   const lastName = req.body.lastName;
   const password = req.body.password;
 
+
+  const isEmail = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+
+  const isSafePassword = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/
+
   if (email === "" || password === "" || firstName === "" || lastName === "") {
     res.render("auth/signup", { message: "Please enter your credentials" });
+    return;
+  }
+  
+
+  if (isEmail.test(email) === false) {
+    res.render("auth/signup", { message: "Please type in a valid E-Mail Adresse" });
+    return;
+  }
+
+
+  if (isSafePassword.test(password) === false) {
+    res.render("auth/signup", { message: "A safe Password consists of minimum 8 characters, 1 uppercase, and 1 number" });
     return;
   }
 
@@ -42,6 +59,8 @@ router.post("/signup", (req, res, next) => {
       res.render("auth/signup", { message: "The email already exists" });
       return;
     }
+
+    
 
     const salt = bcrypt.genSaltSync(bcryptSalt);
     const hashPass = bcrypt.hashSync(password, salt);

@@ -1,6 +1,7 @@
  <div class="container main">
-<div class="form-group w-50 m-auto text-center text-primary">
-  <h1>Edit Profile</h1>
+
+<div class="form-group w-50 text-center text-primary border p-5 mt-5 ml-auto mr-auto">
+  <h1 class="mb-2">Edit Profile</h1>
   <form action="/profil/edit/{{user._id}}" method="POST" id="form-container" enctype="multipart/form-data"
     class="text-center">
 
@@ -21,7 +22,7 @@
       <div class="col-12 ">      
         <label for="dateOfBirth" class="font-weight-bold">Date of birth</label>
 
-        <input type="date" id="dateOfBirth" class="form-control" name="dateOfBirth">
+        <input type="date" id="dateOfBirth" class="form-control" name="dateOfBirth" value = {{formatDatePicker user.dateOfBirth}}>
       <br>
       </div>
 
@@ -30,29 +31,10 @@
         <label for="picture" class="font-weight-bold">Upload a profile picture</label> <br>
         <input type="file"  name="picture" id="picture" class="form-control">
       </div>
-
-
-{{!-- bootstrap file upload --}}
-      {{!-- <div class="input-group">
-  
-  <div class="custom-file">
-    <input type="file" class="custom-file-input" id="inputGroupFile01"
-      aria-describedby="inputGroupFileAddon01">
-    <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
-  </div>
-</div>  --}}
-
-
-
-
-
     </div>
-
-
-
 <br><br>
 
-<button type="submit" class="btn btn-primary">Update account</button>
+<button type="submit" class="btn btn-primary rounded-pill">Update account</button>
 <br> <br>
 
 </form>

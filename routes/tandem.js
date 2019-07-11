@@ -107,11 +107,14 @@ router.get("/all", checkLogin, (req, res, next) => {
       status_proposedTo: "accept",
       status_proposer: "accept",
       $or: [{ _proposedTo: userId }, { _proposer: userId }]
-    })
+    }).populate("_proposer").populate("_proposedTo")
   ]).then(([sent, received, active]) => {
     res.render("tandem/all", { user, sent, received, active });
   });
 });
+
+
+
 
 router.get("/accept/:id", checkLogin, (req, res, next) => {
   let tandemId = req.params.id;

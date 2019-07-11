@@ -8,3 +8,12 @@ document.addEventListener('DOMContentLoaded', () => {
 function goBack() {
   window.history.back();
  }
+
+ let $riddleBox = document.getElementById('riddlebox')
+ let $riddle = document.getElementById('riddle')
+
+ console.log($riddleBox)
+
+ $riddleBox.onclick = function() {
+   $riddle.innerText = "Language!"
+ }
