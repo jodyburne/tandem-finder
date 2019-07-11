@@ -1,0 +1,31 @@
+<div class="main">
+  <div class="container">
+    <div class="row mt-5">
+      <div class="col-12 col-md-5 p-5 border">lorem</div>
+      <div class="col-12 col-md-5 offset-md-2 p-5 border">lorem</div>
+    </div>
+    <div class="row mt-5">
+      {{#if messages}}
+      <div class="col-12 p-5 border">
+        {{#each messages}}
+        <p>{{this.content}}<br />
+          <span class="text-muted">posted by: {{this.postedBy}}, {{formatDate this.created_at}}</span></p>
+        {{/each}}
+      </div>
+      {{else}}
+      <div class="col-12 p-5 border"><span class="text-secondary font-italic">No Messages yet!</span></div>
+      {{/if}}
+    </div>
+    <form action="/message/create/{{tandem._id}}" method="POST">
+    <div class="row mt-5">
+        <div class="col-12 col-md-9">
+          <div class="form-group">
+            <label class="text-secondary mb-3 font-weight-bold" for="message">Post a Message</label>
+            <textarea class="form-control" id="message" name="message" rows="5"></textarea>
+          </div>
+        </div>
+        <div class="align-self-center col-12 col-md-2 offset-1"><button class="btn btn-block btn-primary" type="submit">Post</button></div>
+    </div>
+     </form>
+  </div>
+</div>

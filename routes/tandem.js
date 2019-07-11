@@ -5,6 +5,7 @@ const router = express.Router();
 const User = require("../models/User");
 const Language = require("../models/Language");
 const Tandem = require("../models/Tandem");
+const Message = require("../models/Message");
 
 const { checkLogin } = require("../middlewares");
 
@@ -66,7 +67,8 @@ router.get("/find-lang", (req, res, next) => {
           user,
           languageOffered,
           languageWanted,
-          errMessage: "Oh no! No tandems were found.  Try a different language?",
+          errMessage:
+            "Oh no! No tandems were found.  Try a different language?",
           tryAgainLink: "Search again"
         });
       });
@@ -122,7 +124,7 @@ router.get("/decline/:id", checkLogin, (req, res, next) => {
   let user = req.user;
   let userId = user.id;
   Tandem.findById(tandemId).then(tandem => {
-    console.log('FoundOne:', tandem)
+    console.log("FoundOne:", tandem);
     if (tandem._proposer.toString() === userId.toString()) {
       Tandem.findByIdAndUpdate(tandemId, { status_proposer: "decline" }).then(
         () => {
@@ -139,4 +141,14 @@ router.get("/decline/:id", checkLogin, (req, res, next) => {
   });
 });
 
+router.get("/details/:id", checkLogin, (req, res, next) => {
+  let tandemId = req.params.id;
+  let user = req.user;
+  Promise.all([
+    Tandem.findById(tandemId),
+    Message.find({_tandem: tandemId})
+  ]).then(([tandem, messages]) => {
+    res.render("tandem/detail", { tandem, messages, user });
+  });
+});
 module.exports = router;
