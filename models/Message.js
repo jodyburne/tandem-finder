@@ -4,6 +4,7 @@ const Schema = mongoose.Schema;
 const messageSchema = new Schema(
   {
     _creator: { type: Schema.Types.ObjectId, ref: "User" },
+    _tandem: { type: Schema.Types.ObjectId, ref: "Tandem" },
     content: String
   },
   {

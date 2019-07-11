@@ -6,25 +6,25 @@
       <h1 class="text-primary">Welcome to my Profile!</h1>
     </div>
   </div>
-  <div class="mt-5 mb-5"><img src="{{foundUser.profilePic}}" alt="profile-pic" width="150"></div>
+  <div class="mt-5 mb-5"><img src="../{{foundUser.profilePic}}" class="rounded-circle"alt="profile-pic" width="250"></div>
   <div class="row mt-3">
-    <div class="col-6 col-md-3 text-primary">Firstname:</div>
+    <div class="col-6 col-md-3 text-primary"><b>Firstname:</b></div>
     <div class="col-6 col-md-3"> {{foundUser.firstName}}</div>
-    <div class="col-6 col-md-3 text-primary">Lastname:</div>
+    <div class="col-6 col-md-3 text-primary"><b>Lastname:</b></div>
     <div class="col-6 col-md-3">{{foundUser.lastName}}</div>
   </div>
   <div class="row mt-3">
-    <div class="col-6 col-md-3 text-primary">Birthday:</div>
+    <div class="col-6 col-md-3 text-primary"><b>Birthday:</b></div>
     <div class="col-6 col-md-3">{{formatBirthDate foundUser.dateOfBirth}}</div>
-    <div class="col-6 col-md-3 text-primary">Nationality:</div>
+    <div class="col-6 col-md-3 text-primary"><b>Nationality:</b></div>
     <div class="col-6 col-md-3">{{foundUser.nationality}}</div>
   </div>
   <div class="row mt-3">
-    <div class="col-6 col-md-3 text-primary">E-Mail:</div>
+    <div class="col-6 col-md-3 text-primary"><b>E-Mail:</b></div>
     <div class="col-6 col-md-3">{{foundUser.email}}</div>
   </div>
     <div class="row mt-3">
-    <div class="col-3 col-md-3 text-primary">Biography:</div>
+    <div class="col-3 col-md-3 text-primary"><b>Biography:</b></div>
     <div class="col-9 col-md-9 text-justify">{{foundUser.bio}}</div>
   </div>
 </div>

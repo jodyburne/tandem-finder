@@ -1,4 +1,5 @@
-<div class="container-fluid d-flex justify-content-center main">
+<div class="container main">
+<div class="container-fluid d-flex justify-content-center ">
  
 <section id="search">
 <div class=" p-2 mt-2  text-center justify-content-center mb-5">
@@ -44,13 +45,14 @@
 </section>
 </div>
 
-<div id="results" class="justify-content-center">
-  {{#if userFinal}}
+  
+<div id="results" class="justify-content-center ">
 <section >
+  {{#if userFinal}}
 <div class=" p-5 mt-5 mb-5">
 
 <h3 class="text-secondary mt-5 text-center">Your search results for {{languageWanted}}</h3>
- <div>
+ 
   <table class="mt-4 table table-borderless">
     <thead>
       <tr>
@@ -61,8 +63,8 @@
       {{#each userFinal}}
       <tr>
         
-        <th scope="row"><img src="{{this.profilePic}}" width="100" alt="profile photo"> </th>
-        <td>{{this.firstName}} {{this.lastName}} <br> <i>{{this.bio}}</i>  <br> </td>
+        <th scope="row">  <a  href="/profil/view/{{this._id}}"> <img src="{{this.profilePic}}" class="rounded-circle" width="120" alt="profile photo"></a> </th>
+        <td>{{this.firstName}} {{this.lastName}} <br> <br> <i>{{this.bio}}</i>  <br> </td>
        <td> <a class="text-secondary" href="/tandem/create/{{this._id}}">Propose a Tandem</a></td>
       </tr> {{/each}}
     </tbody>
@@ -79,6 +81,10 @@
 <a class="text-secondary" href="/tandem/find">{{tryAgainLink}}</a>
  </div>
  
+
+{{/if}} 
+</section>
 </div>
-</section>{{/if}} 
+
+
 </div>
