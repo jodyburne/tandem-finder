@@ -28,6 +28,7 @@ router.post("/edit/:userId",checkLogin,
     let userImg = "";
     if (req.file) {
       userImg = req.file.secure_url;
+      console.log(req.file)
     } else {
       console.log("req undefined");
       userImg = req.user.profilePic;
