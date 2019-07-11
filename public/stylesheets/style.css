@@ -7021,9 +7021,31 @@ a.text-dark:hover, a.text-dark:focus {
     border-color: #dee2e6; } }
 
 body {
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif; }
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column; }
 
 a {
   color: #00B7FF; }
+
+.main {
+  flex-grow: 1; }
+
+footer {
+  line-height: 50px;
+  color: white;
+  text-align: center;
+  height: 50px;
+  margin-top: 30px; }
+
+.img-cover {
+  object-fit: cover; }
+
+.primary-less {
+  background-color: #222CCB; }
+
+.round {
+  border-radius: 50%; }
 
 /*# sourceMappingURL=style.css.map */

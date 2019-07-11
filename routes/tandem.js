@@ -73,17 +73,69 @@ router.get("/find-lang", (req, res, next) => {
     });
 });
 
-router.get("/all", checkLogin, (req, res, next) => {
-  let user = req.user;
-  res.render("tandem/all", { user });
-});
-
 router.get("/create/:id", checkLogin, (req, res, next) => {
   let proposedId = req.params.id;
   let userId = req.user.id;
-  let user = req.user
+  let user = req.user;
   Tandem.create({ _proposer: userId, _proposedTo: proposedId }).then(() => {
-    res.render("tandem/all", { user });
+    res.redirect("/tandem/all");
+  });
+});
+
+//TODO: Adjust Filter, right now declined tandems are found!
+
+router.get("/all", checkLogin, (req, res, next) => {
+  let user = req.user;
+  let userId = req.user.id;
+  Promise.all([
+    Tandem.find({ _proposer: userId, status_proposedTo: "pending" }).populate(
+      "_proposedTo"
+    ),
+    Tandem.find({ _proposedTo: userId, status_proposedTo: "pending" }).populate(
+      "_proposer"
+    ),
+    Tandem.find({
+      status_proposedTo: "accept",
+      status_proposer: "accept",
+      $or: [{ _proposedTo: userId }, { _proposer: userId }]
+    })
+  ]).then(([sent, received, active]) => {
+    res.render("tandem/all", { user, sent, received, active });
+  });
+});
+
+router.get("/accept/:id", checkLogin, (req, res, next) => {
+  let tandemId = req.params.id;
+  let user = req.user;
+  Tandem.findByIdAndUpdate(tandemId, { status_proposedTo: "accept" })
+    .then(tandem => {
+      console.log(tandem);
+      res.redirect("/tandem/all");
+    })
+    .catch(err => {
+      console.log("ERR: ", err);
+    });
+});
+
+router.get("/decline/:id", checkLogin, (req, res, next) => {
+  let tandemId = req.params.id;
+  let user = req.user;
+  let userId = user.id;
+  Tandem.findById(tandemId).then(tandem => {
+    console.log('FoundOne:', tandem)
+    if (tandem._proposer.toString() === userId.toString()) {
+      Tandem.findByIdAndUpdate(tandemId, { status_proposer: "decline" }).then(
+        () => {
+          res.redirect("/tandem/all");
+        }
+      );
+    } else if (tandem._proposedTo.toString() === userId.toString()) {
+      Tandem.findByIdAndUpdate(tandemId, { status_proposer: "decline" }).then(
+        () => {
+          res.redirect("/tandem/all");
+        }
+      );
+    }
   });
 });
 
