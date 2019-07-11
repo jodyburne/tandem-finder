@@ -29,5 +29,17 @@ footer {
   text-align: center;
   height: 50px;
   margin-top: 30px;
-  background-color: #222CCBE6;
+  
 }
+
+.img-cover {
+    object-fit: cover;
+  }
+
+  .primary-less {
+    background-color: #222CCB;
+  }
+
+  .round {
+    border-radius: 50%;
+  }

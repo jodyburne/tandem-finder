@@ -7037,7 +7037,15 @@ footer {
   color: white;
   text-align: center;
   height: 50px;
-  margin-top: 30px;
-  background-color: #222CCBE6; }
+  margin-top: 30px; }
+
+.img-cover {
+  object-fit: cover; }
+
+.primary-less {
+  background-color: #222CCB; }
+
+.round {
+  border-radius: 50%; }
 
 /*# sourceMappingURL=style.css.map */
