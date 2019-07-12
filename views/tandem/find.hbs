@@ -52,10 +52,10 @@
 <div id="results" class="justify-content-center ">
 <section >
   {{#if userFinal}}
-<div class=" p-5 mt-5 mb-5">
+<div class=" p-5-md mt-5 mb-5">
 
 <h3 class="text-secondary mt-5 text-center">Your search results for {{languageWanted}}</h3>
- 
+ <div class="table-responsive">
   <table class="mt-4 table table-borderless">
     <thead>
       <tr>
@@ -72,6 +72,7 @@
       </tr> {{/each}}
     </tbody>
   </table>
+  </div>
   <div class="text-center">
   <br>
 <a href="/tandem/find"><button class="btn btn-secondary rounded-pill">{{tryAgainLink}}</button></a>
