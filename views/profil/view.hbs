@@ -7,33 +7,33 @@
     </div>
     <div class=" col-12 col-md-2"><a href="/profil/edit/{{user._id}}" class="btn btn-secondary btn-block rounded-pill">Edit Profile</a></div>
   </div>
-  <div class="mt-5 mb-5"><img src="{{user.profilePic}}" alt="profile-pic" width="350" alt="profile-pic"></div>
+  <div class="mt-5 mb-5"><img clasS="img-fluid" src="{{user.profilePic}}" alt="profile-pic" width="300" alt="profile-pic"></div>
   <div class="row mt-3">
-    <div class="col-6 col-md-3 text-primary">Firstname:</div>
-    <div class="col-6 col-md-3"> {{user.firstName}}</div>
-    <div class="col-6 col-md-3 text-primary">Lastname:</div>
-    <div class="col-6 col-md-3">{{user.lastName}}</div>
+    <div class="col-12 col-md-3 text-primary">Firstname:</div>
+    <div class="col-12 col-md-3"> {{user.firstName}}</div>
+    <div class="col-12 col-md-3 text-primary">Lastname:</div>
+    <div class="col-12 col-md-3">{{user.lastName}}</div>
   </div>
   <div class="row mt-3">
-    <div class="col-6 col-md-3 text-primary">Birthday:</div>
-    <div class="col-6 col-md-3">{{formatBirthDate user.dateOfBirth}}</div>
-    <div class="col-6 col-md-3 text-primary">Nationality:</div>
-    <div class="col-6 col-md-3">{{user.nationality}}</div>
+    <div class="col-12 col-md-3 text-primary">Birthday:</div>
+    <div class="col-12 col-md-3">{{formatBirthDate user.dateOfBirth}}</div>
+    <div class="col-12 col-md-3 text-primary">Nationality:</div>
+    <div class="col-12 col-md-3">{{user.nationality}}</div>
   </div>
   <div class="row mt-3">
-    <div class="col-6 col-md-3 text-primary">E-Mail:</div>
-    <div class="col-6 col-md-3">{{user.email}}</div>
+    <div class="col-12 col-md-3 text-primary">E-Mail:</div>
+    <div class="col-12 col-md-3">{{user.email}}</div>
   </div>
     <div class="row mt-3">
-    <div class="col-3 col-md-3 text-primary">Biography:</div>
-    <div class="col-9 col-md-9 text-justify">{{user.bio}}</div>
+    <div class="col-12 col-md-3 text-primary">Biography:</div>
+    <div class="col-12 col-md-9 text-justify">{{user.bio}}</div>
   </div>
 </div>
 </section>
 
 
 <section id="language">
-  <div class="border p-5 mt-5 mb-5">
+  <div class="border p-2 p-md-5 mt-5 mb-5">
   <div class="row">
     <h1 class="col-12 text-primary">My Languages</h1>
   </div>
@@ -62,6 +62,7 @@
       <div class="col-12 col-md-4"><button type="submit" class="btn btn-secondary btn-block rounded-pill">Add Language</button></div>
     </div>
   </form>
+  <div class="table-responsive">
   <table class=" mt-4 table">
     <thead>
       <tr>
@@ -81,6 +82,7 @@
       {{/each}}
     </tbody>
   </table>
+  </div>
   {{#if createErr }}
   <div class="alert alert-danger mt-5" role="alert">Please delete a Language before creating new!</div>
   {{/if}}
