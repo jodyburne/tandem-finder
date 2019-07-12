@@ -10,8 +10,9 @@ const Message = require("../models/Message");
 const { checkLogin } = require("../middlewares");
 
 const nodemailer = require("nodemailer");
-const transporter = require("../mailer/transporter")
+const transporter = require("../mailer/transporter");
 
+const newTandemProposal = require("../mailer/newTandemProposal");
 
 /* GET home page */
 
@@ -63,8 +64,8 @@ router.get("/find-lang", (req, res, next) => {
               userFinal.push(userWanted[j]);
             }
           }
-        } 
-      
+        }
+
         res.render("tandem/find", {
           userFinal,
           user,
@@ -80,43 +81,68 @@ router.get("/find-lang", (req, res, next) => {
 
 router.get("/create/:id", checkLogin, (req, res, next) => {
   let proposedId = req.params.id;
-  let language = req.query.language
-  let langOffer = req.query.langOffer
+  let language = req.query.language;
+  let langOffer = req.query.langOffer;
   let userId = req.user.id;
   let user = req.user;
 
   Promise.all([
-    Language.find({_user: proposedId, language: language}),
-    Language.find({_user: userId, language: langOffer})
+    Language.find({ _user: proposedId, language: language }),
+    Language.find({ _user: userId, language: langOffer })
   ]).then(([language, languageOffered]) => {
-    Tandem.create({ _proposer: userId, _proposedTo: proposedId, _language_proposer: languageOffered[0]._id, _language_proposedTo: language[0]._id }).then(() => {
-    res.redirect("/tandem/all");
+    Tandem.create({
+      _proposer: userId,
+      _proposedTo: proposedId,
+      _language_proposer: languageOffered[0]._id,
+      _language_proposedTo: language[0]._id
+    }).then(() => {
+      User.findById(proposedId).then(foundUser => {
+        let user = req.user;
+        let emailRecipient = foundUser.email;
+        let messageCreator = user.firstName;
+        transporter
+          .sendMail({
+            to: emailRecipient,
+            subject: `${messageCreator} sent you a new Message!`,
+            text: newTandemProposal(messageCreator),
+            html: newTandemProposal(messageCreator)
+          })
+          .then(() => {
+            res.redirect("/tandem/all");
+          })
+          .catch((err) =>{
+            console.log(err)
+          })
+      });
+    });
   });
-})
 });
 
 router.get("/all", checkLogin, (req, res, next) => {
   let user = req.user;
   let userId = req.user.id;
   Promise.all([
-    Tandem.find({ _proposer: userId, status_proposedTo: "pending", status_proposer: {$ne: "decline"} }).populate(
-      "_proposedTo"
-    ),
-    Tandem.find({ _proposedTo: userId, status_proposedTo: "pending",status_proposer: {$ne: "decline"} }).populate(
-      "_proposer"
-    ),
+    Tandem.find({
+      _proposer: userId,
+      status_proposedTo: "pending",
+      status_proposer: { $ne: "decline" }
+    }).populate("_proposedTo"),
+    Tandem.find({
+      _proposedTo: userId,
+      status_proposedTo: "pending",
+      status_proposer: { $ne: "decline" }
+    }).populate("_proposer"),
     Tandem.find({
       status_proposedTo: "accept",
       status_proposer: "accept",
       $or: [{ _proposedTo: userId }, { _proposer: userId }]
-    }).populate("_proposer").populate("_proposedTo")
+    })
+      .populate("_proposer")
+      .populate("_proposedTo")
   ]).then(([sent, received, active]) => {
     res.render("tandem/all", { user, sent, received, active });
   });
 });
-
-
-
 
 router.get("/accept/:id", checkLogin, (req, res, next) => {
   let tandemId = req.params.id;
@@ -155,8 +181,12 @@ router.get("/details/:id", checkLogin, (req, res, next) => {
   let tandemId = req.params.id;
   let user = req.user;
   Promise.all([
-    Tandem.findById(tandemId).populate('_proposer').populate('_proposedTo').populate('_language_proposer').populate('_language_proposedTo'),
-    Message.find({_tandem: tandemId})
+    Tandem.findById(tandemId)
+      .populate("_proposer")
+      .populate("_proposedTo")
+      .populate("_language_proposer")
+      .populate("_language_proposedTo"),
+    Message.find({ _tandem: tandemId })
   ]).then(([tandem, messages]) => {
     res.render("tandem/detail", { tandem, messages, user });
   });

@@ -172,7 +172,7 @@ return `
          align="center" bgcolor="#F57816" role="presentation" style="border:none;border-radius:3px;cursor:auto;padding:10px 25px;background:#F57816;" valign="middle"
       >
         <a
-           href="http://localhost:3005/tandem/details/${tandemId}" style="background:#F57816;color:#FFFFFF;font-family:Ubuntu, Helvetica, Arial, sans-serif, Helvetica, Arial, sans-serif;font-size:13px;font-weight:normal;line-height:120%;Margin:0;text-decoration:none;text-transform:none;" target="_blank"
+           href="${process.env.BASE_URL}/tandem/details/${tandemId}" style="background:#F57816;color:#FFFFFF;font-family:Ubuntu, Helvetica, Arial, sans-serif, Helvetica, Arial, sans-serif;font-size:13px;font-weight:normal;line-height:120%;Margin:0;text-decoration:none;text-transform:none;" target="_blank"
         >
           See Message now
         </a>
