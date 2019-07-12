@@ -14,5 +14,8 @@ router.get('/', (req, res, next) => {
   res.render('index', {user});
 });
 
+router.get('/riddle', (req, res, next) => {
+  res.render('riddle');
+});
 
 module.exports = router;

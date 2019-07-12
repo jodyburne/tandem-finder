@@ -73,9 +73,37 @@ hbs.registerHelper("formatDate", value => {
   return value;
 });
 
+hbs.registerHelper("findPartner", (userId, tandem) => {
+  console.log(tandem._proposedTo)
+if (userId.toString() === tandem._proposer._id.toString()) {
+  console.log("ping")
+  return tandem._proposedTo.firstName
+}
+  console.log("pong")
+  return tandem._proposer.firstName
+});
+
+hbs.registerHelper("formatDatePicker", value => {
+  try {
+    return moment(value).format("YYYY-MM-DD");
+  } catch (err) {
+    console.log(err);
+  }
+  return value;
+});
+
 hbs.registerHelper("formatBirthDate", value => {
   try {
     return moment(value).format("DD.MM.YYYY");
+  } catch (err) {
+    console.log(err);
+  }
+  return value;
+});
+
+hbs.registerHelper("formatAge", value => {
+  try {
+    return moment().diff(value, 'years',false)
   } catch (err) {
     console.log(err);
   }

@@ -37,7 +37,7 @@
         <div class="row mt-2 ">
 
           <div class="form-group  col-md-12">
-            <button type="submit" class="btn btn-secondary">Search</button>
+            <button type="submit" class="btn btn-secondary rounded-pill">Search</button>
           </div>
         </div>
 
@@ -68,13 +68,13 @@
         
         <th scope="row">  <a  href="/profil/view/{{this._id}}"> <img src="{{this.profilePic}}" class="rounded-circle" width="120" alt="profile photo"></a> </th>
         <td>{{this.firstName}} {{this.lastName}} <br> <br> <i>{{this.bio}}</i>  <br> </td>
-       <td> <a class="text-secondary" href="/tandem/create/{{this._id}}">Propose a Tandem</a></td>
+       <td> <a class="text-secondary" href="/tandem/create/{{this._id}}?langOffer={{../languageOffered}}&language={{../languageWanted}}">Propose a Tandem</a></td>
       </tr> {{/each}}
     </tbody>
   </table>
   <div class="text-center">
   <br>
-<a href="/tandem/find"><button class="btn btn-secondary">{{tryAgainLink}}</button></a>
+<a href="/tandem/find"><button class="btn btn-secondary rounded-pill">{{tryAgainLink}}</button></a>
   </div>
   </div>
   {{else}} 

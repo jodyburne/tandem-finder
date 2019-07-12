@@ -61,7 +61,8 @@ router.get("/find-lang", (req, res, next) => {
               userFinal.push(userWanted[j]);
             }
           }
-        } console.log(userFinal)
+        } 
+      
         res.render("tandem/find", {
           userFinal,
           user,
@@ -77,34 +78,43 @@ router.get("/find-lang", (req, res, next) => {
 
 router.get("/create/:id", checkLogin, (req, res, next) => {
   let proposedId = req.params.id;
+  let language = req.query.language
+  let langOffer = req.query.langOffer
   let userId = req.user.id;
   let user = req.user;
-  Tandem.create({ _proposer: userId, _proposedTo: proposedId }).then(() => {
+
+  Promise.all([
+    Language.find({_user: proposedId, language: language}),
+    Language.find({_user: userId, language: langOffer})
+  ]).then(([language, languageOffered]) => {
+    Tandem.create({ _proposer: userId, _proposedTo: proposedId, _language_proposer: languageOffered[0]._id, _language_proposedTo: language[0]._id }).then(() => {
     res.redirect("/tandem/all");
   });
+})
 });
-
-//TODO: Adjust Filter, right now declined tandems are found!
 
 router.get("/all", checkLogin, (req, res, next) => {
   let user = req.user;
   let userId = req.user.id;
   Promise.all([
-    Tandem.find({ _proposer: userId, status_proposedTo: "pending" }).populate(
+    Tandem.find({ _proposer: userId, status_proposedTo: "pending", status_proposer: {$ne: "decline"} }).populate(
       "_proposedTo"
     ),
-    Tandem.find({ _proposedTo: userId, status_proposedTo: "pending" }).populate(
+    Tandem.find({ _proposedTo: userId, status_proposedTo: "pending",status_proposer: {$ne: "decline"} }).populate(
       "_proposer"
     ),
     Tandem.find({
       status_proposedTo: "accept",
       status_proposer: "accept",
       $or: [{ _proposedTo: userId }, { _proposer: userId }]
-    })
+    }).populate("_proposer").populate("_proposedTo")
   ]).then(([sent, received, active]) => {
     res.render("tandem/all", { user, sent, received, active });
   });
 });
+
+
+
 
 router.get("/accept/:id", checkLogin, (req, res, next) => {
   let tandemId = req.params.id;
@@ -145,10 +155,11 @@ router.get("/details/:id", checkLogin, (req, res, next) => {
   let tandemId = req.params.id;
   let user = req.user;
   Promise.all([
-    Tandem.findById(tandemId),
+    Tandem.findById(tandemId).populate('_proposer').populate('_proposedTo').populate('_language_proposer').populate('_language_proposedTo'),
     Message.find({_tandem: tandemId})
   ]).then(([tandem, messages]) => {
     res.render("tandem/detail", { tandem, messages, user });
   });
 });
+
 module.exports = router;

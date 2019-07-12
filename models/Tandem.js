@@ -15,8 +15,8 @@ const tandemSchema = new Schema(
       enum: ['accept', 'decline', 'pending'],
       default: "pending"
     },
-    language_proposer: { type: Schema.Types.ObjectId, ref: "Language" },
-    language_proposedTo: { type: Schema.Types.ObjectId, ref: "Language" }
+    _language_proposer: { type: Schema.Types.ObjectId, ref: "Language" },
+    _language_proposedTo: { type: Schema.Types.ObjectId, ref: "Language" }
   },
   {
     timestamps: {

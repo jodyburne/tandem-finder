@@ -9,10 +9,11 @@ const { checkLogin } = require("../middlewares");
 
 /* GET home page */
 router.get("/view", checkLogin,(req, res, next) => {
+  let createErr= (req.query.createErr == "true");
   let user = req.user;
   Language.find({ _user: user.id }).then(languages => {
-    console.log(languages);
-    res.render("profil/view", { languages, user });
+    console.log(typeof createErr);
+    res.render("profil/view", { languages, user, createErr });
   });
 });
 

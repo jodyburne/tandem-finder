@@ -56,7 +56,7 @@
     <tbody>
     {{#each active}}
       <tr>
-        <th scope="row"></th>
+        <th scope="row">{{findPartner ../user.id this}}</th>
         <td>{{formatDate this.created_at}}</td>
         <td><a class="ml-4" href="/tandem/details/{{this.id}}"><span class="text-primary fas fa-info-circle "></span></a><a class="ml-4" href="/tandem/decline/{{this.id}}"><span class="text-secondary fas fa-ban "></span></a></td>
       </tr>
