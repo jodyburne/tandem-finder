@@ -9,12 +9,15 @@ const Message = require("../models/Message");
 
 const { checkLogin } = require("../middlewares");
 
+const nodemailer = require("nodemailer");
+const transporter = require("../mailer/transporter")
+
+
 /* GET home page */
 
 router.get("/find", checkLogin, (req, res, next) => {
   let user = req.user;
   Language.find({ _user: user.id }).then(languages => {
-    // console.log("user's languages: ", languages);
     res.render("tandem/find", { user, languages });
   });
 });
@@ -28,7 +31,6 @@ router.get("/find-lang", (req, res, next) => {
 
   Language.find({ _user: user.id })
     .then(languages => {
-      console.log("user's languages: ", languages);
       for (let i = 0; i < languages.length; i++) {
         if (languages[i].language === languageWanted) {
           wantedLevel = languages[i].level;
@@ -121,7 +123,6 @@ router.get("/accept/:id", checkLogin, (req, res, next) => {
   let user = req.user;
   Tandem.findByIdAndUpdate(tandemId, { status_proposedTo: "accept" })
     .then(tandem => {
-      console.log(tandem);
       res.redirect("/tandem/all");
     })
     .catch(err => {
@@ -134,7 +135,6 @@ router.get("/decline/:id", checkLogin, (req, res, next) => {
   let user = req.user;
   let userId = user.id;
   Tandem.findById(tandemId).then(tandem => {
-    console.log("FoundOne:", tandem);
     if (tandem._proposer.toString() === userId.toString()) {
       Tandem.findByIdAndUpdate(tandemId, { status_proposer: "decline" }).then(
         () => {

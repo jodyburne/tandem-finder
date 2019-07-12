@@ -74,12 +74,9 @@ hbs.registerHelper("formatDate", value => {
 });
 
 hbs.registerHelper("findPartner", (userId, tandem) => {
-  console.log(tandem._proposedTo)
 if (userId.toString() === tandem._proposer._id.toString()) {
-  console.log("ping")
   return tandem._proposedTo.firstName
 }
-  console.log("pong")
   return tandem._proposer.firstName
 });
 
