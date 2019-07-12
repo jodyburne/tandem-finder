@@ -29,7 +29,6 @@ router.get("/edit/:id", (req, res, next) => {
 router.get("/delete/:id", (req, res, next) => {
   let languageId = req.params.id;
   Language.findByIdAndDelete(languageId).then(language => {
-    console.log("Language deleted:", language);
     res.redirect("/profil/view");
   });
 });
