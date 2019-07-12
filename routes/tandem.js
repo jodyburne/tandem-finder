@@ -58,6 +58,7 @@ router.get("/find-lang", (req, res, next) => {
         let userWanted = wanted.map(wanted => wanted._user);
         let userFinal = [];
 
+        if(userOffered.length > 0 && userWanted.length > 0) {
         for (let i = 0; i < userOffered.length; i++) {
           for (let j = 0; j < userWanted.length; j++) {
             if (userOffered[i].toString() === userWanted[j].toString()) {
@@ -65,6 +66,7 @@ router.get("/find-lang", (req, res, next) => {
             }
           }
         }
+      }
 
         res.render("tandem/find", {
           userFinal,
@@ -78,6 +80,8 @@ router.get("/find-lang", (req, res, next) => {
       });
     });
 });
+
+//TODO Refactor to Post (CSRF)
 
 router.get("/create/:id", checkLogin, (req, res, next) => {
   let proposedId = req.params.id;
