@@ -1,7 +1,7 @@
 <div class="main">
   <div class="container">
     <div class="row mt-5">
-      <div class="col-12 col-md-5 p-5 border d-flex flex-column align-items-center">
+      <div class="col-12 col-md-5 p-5 shadow border d-flex flex-column align-items-center">
         <div><img src="{{tandem._proposer.profilePic}}" alt="" width="200"></div>
         <div class="mt-4">
           <p>{{tandem._proposer.firstName}} {{tandem._proposer.lastName}} </p>
@@ -10,7 +10,7 @@
         <div class="mt-2">{{formatAge tandem._proposer.dateOfBirth}} years old</div>
         <div class="mt-4">{{tandem._proposer.bio}}</div>
       </div>
-      <div class="col-12 col-md-5 offset-md-2 p-5 border d-flex flex-column align-items-center mt-5 mt-md-0">
+      <div class="col-12 col-md-5 offset-md-2 p-5 shadow border d-flex flex-column align-items-center mt-5 mt-md-0">
         <div><img src="{{tandem._proposedTo.profilePic}}" alt="" width="200"></div>
         <div class="mt-4">
           <p>{{tandem._proposedTo.firstName}} {{tandem._proposedTo.lastName}} </p>
@@ -23,14 +23,14 @@
     </div>
     <div class="row mt-5">
       {{#if messages}}
-      <div class="col-12 p-5 border">
+      <div class="col-12 p-5 shadow border">
         {{#each messages}}
         <p>{{this.content}}<br />
           <span class="text-muted small">posted by: {{this.postedBy}}, {{formatDate this.created_at}}</span></p>
         {{/each}}
       </div>
       {{else}}
-      <div class="col-12 p-5 border"><span class="text-secondary font-italic">No Messages yet!</span></div>
+      <div class="col-12 p-5 shadow border"><span class="text-secondary font-italic">No Messages yet!</span></div>
       {{/if}}
     </div>
     <form action="/message/create/{{tandem._id}}" method="POST">
@@ -38,7 +38,7 @@
         <div class="col-12 col-md-9">
           <div class="form-group">
             <label class="text-secondary mb-3 font-weight-bold" for="message">Post a Message</label>
-            <textarea class="form-control" id="message" name="message" rows="5"></textarea>
+            <textarea class="form-control shadow " id="message" name="message" rows="5"></textarea>
           </div>
         </div>
         <div class="align-self-center col-12 col-md-2 offset-md-1"><button class="btn btn-block btn-primary rounded-pill"
