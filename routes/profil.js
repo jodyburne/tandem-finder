@@ -11,11 +11,17 @@ const { checkLogin } = require("../middlewares");
 router.get("/view", checkLogin,(req, res, next) => {
   let createErr= (req.query.createErr == "true");
   let user = req.user;
+  let completeProfil = false
+  if(user.nationality && user.bio && user.dateOfBirth && user.profilePic !== "../images/munari.jpg") {
+    completeProfil = true 
+  }
+    console.log(completeProfil)
   Language.find({ _user: user.id }).then(languages => {
     console.log(typeof createErr);
-    res.render("profil/view", { languages, user, createErr });
+    res.render("profil/view", { languages, user, createErr, completeProfil });
   });
 });
+
 
 router.get("/edit/:userId", checkLogin, (req, res, next) => {
   User.findById(req.params.userId).then(user => {
