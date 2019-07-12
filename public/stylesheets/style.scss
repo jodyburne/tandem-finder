@@ -24,7 +24,9 @@ $secondary: #f57816;
    opacity: 0.7;
 }
 
-
+#formEdit {
+  width: 96%;
+}
 
 .carousel-caption-2 {
   color: white;
@@ -78,3 +80,9 @@ footer {
 .round {
   border-radius: 50%;
 }
+
+@media (min-width: 768px) { 
+  #formEdit {
+    width: 50%;
+  }
+ }
