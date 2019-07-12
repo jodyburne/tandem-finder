@@ -4,7 +4,10 @@
   <div class="row">
     <div class=" col-12 col-md-10">
       <h1 class="text-primary">My profile</h1>
+      {{#unless completeProfil}}
+      <div class=" col-12 alert alert-warning mt-5 ml-auto mr-auto" role="alert">Other people are more likely to accept you if you complete your profile! </div> {{/unless}}
     </div>
+    
     <div class=" col-12 col-md-2"><a href="/profil/edit/{{user._id}}" class="btn btn-secondary btn-block rounded-pill">Edit </a></div>
   </div>
   <div class="mt-5 mb-5"><img class="img-fluid rounded" src="{{user.profilePic}}" alt="profile-pic" width="400" alt="profile-pic"></div>

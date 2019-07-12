@@ -1,6 +1,27 @@
  <div class="container main">
 <div class="border shadow p-2 p-md-5 mt-5 mb-5">
 <h1 class="text-primary mb-5">All Tandems</h1>
+<h3 class="text-secondary mt-5">My Tandems</h3>
+ <div class="table-responsive">
+  <table class=" mt-4 table">
+    <thead>
+      <tr>
+        <th scope="col">Your Partner</th>
+        <th scope="col">Open since</th>
+        <th scope="col">Operations</th>
+      </tr>
+    </thead>
+    <tbody>
+    {{#each active}}
+      <tr>
+        <th scope="row">{{findPartner ../user.id this}}</th>
+        <td>{{formatDate this.created_at}}</td>
+        <td><a class="ml-4" href="/tandem/details/{{this.id}}"><span class="text-primary fas fa-info-circle "></span></a><a class="ml-4" href="/tandem/decline/{{this.id}}"><span class="text-secondary fas fa-ban "></span></a></td>
+      </tr>
+      {{/each}}
+    </tbody>
+  </table>
+  </div>
 <h3 class="text-secondary mt-5">Awaiting your Response</h3>
  <div class="table-responsive">
   <table class="mt-4 table">
@@ -38,27 +59,6 @@
         <th scope="row">{{this._proposedTo.firstName}}</th>
         <td>{{formatDate this.created_at}}</td>
         <td><a href="/profil/view/{{this._proposedTo._id}}"><span class="text-primary fas fa-user"></span></a><a class="ml-4" href="/tandem/decline/{{this.id}}"><span class="text-secondary fas fa-ban "></span></a></td>
-      </tr>
-      {{/each}}
-    </tbody>
-  </table>
-  </div>
-<h3 class="text-secondary mt-5">My Tandems</h3>
- <div class="table-responsive">
-  <table class=" mt-4 table">
-    <thead>
-      <tr>
-        <th scope="col">Your Partner</th>
-        <th scope="col">Open since</th>
-        <th scope="col">Operations</th>
-      </tr>
-    </thead>
-    <tbody>
-    {{#each active}}
-      <tr>
-        <th scope="row">{{findPartner ../user.id this}}</th>
-        <td>{{formatDate this.created_at}}</td>
-        <td><a class="ml-4" href="/tandem/details/{{this.id}}"><span class="text-primary fas fa-info-circle "></span></a><a class="ml-4" href="/tandem/decline/{{this.id}}"><span class="text-secondary fas fa-ban "></span></a></td>
       </tr>
       {{/each}}
     </tbody>
